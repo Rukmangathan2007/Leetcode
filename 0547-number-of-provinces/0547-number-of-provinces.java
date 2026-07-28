@@ -13,21 +13,21 @@ class Solution {
 
     public int findCircleNum(int[][] isConnected) {
         int N=isConnected.length;
-        int[] leader=new int[N];
-        for(int i=0;i<N;i++){
+        int[] leader=new int[N+1];
+        for(int i=1;i<N+1;i++){
             leader[i]=i;
         }
 
         for(int row=0;row<N;row++){
             for(int col=0;col<N;col++){
                 if(isConnected[row][col]==1){
-                    join(leader,row,col);
+                    join(leader,row+1,col+1);
                 }
             }
         }
 
         Set<Integer> st=new HashSet<>();
-        for(int i=0;i<N;i++){
+        for(int i=1;i<N+1;i++){
             st.add(find(leader,leader[i]));
         }
 
